@@ -1,0 +1,27 @@
+# Azure Pipeline
+# Ez egy egyszerű példa
+# Tobávvi információk: https://aka.ms/yaml
+
+trigger:
+- main
+- demo
+
+pool:
+  vmImage: ubuntu-latest
+
+stages: 
+  - stage: Azure_Pipeline_-_Alap
+    jobs:
+      - job: Egyszeru_feladat
+        steps:
+          - script: echo Hello, world!
+            displayName: 'Egysoros parancs'
+          - script: |
+              echo "##[section]Ez egy nagyobb rész"
+              echo "##[command]Fájlok listája"
+              ls -l
+              echo "##[debug]Helyi mappa"
+              pwd
+              echo "##[debug]Ez egy olyan üzenet, amit akkor használunk, ha valami hibajavítási üzenetet szeretnénk kiiratni"
+              env
+            displayName: 'Többsoros'
